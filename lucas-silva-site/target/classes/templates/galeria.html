@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria — Lucas Silva</title>
+    <meta name="description" content="Galeria de fotos: partidas, treinos e comemorações de Lucas Silva.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p class="section-tag">Momentos</p>
+            <h2 class="section-title">GALERIA</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="gallery-tabs reveal">
+            <button class="gallery-tab active" data-filter="all">Tudo</button>
+            <button class="gallery-tab" data-filter="partidas">Partidas</button>
+            <button class="gallery-tab" data-filter="treinos">Treinos</button>
+            <button class="gallery-tab" data-filter="comemoracoes">Comemorações</button>
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item reveal" data-category="partidas" data-caption="Final do Brasileirão — vitória por 3x1">
+                <img th:src="@{/images/galeria1.jpg}" alt="Partida 1" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">PARTIDA 01</div>
+            </div>
+            <div class="gallery-item reveal" data-category="partidas" data-caption="Libertadores — quartas de final">
+                <img th:src="@{/images/galeria2.jpg}" alt="Partida 2" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">PARTIDA 02</div>
+            </div>
+            <div class="gallery-item reveal" data-category="partidas" data-caption="Estreia pela Seleção Brasileira">
+                <img th:src="@{/images/galeria3.jpg}" alt="Partida 3" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">SELEÇÃO</div>
+            </div>
+
+            <div class="gallery-item reveal" data-category="treinos" data-caption="Treino físico — pré-temporada">
+                <img th:src="@{/images/galeria4.jpg}" alt="Treino 1" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">TREINO</div>
+            </div>
+            <div class="gallery-item reveal" data-category="treinos" data-caption="Treino técnico de finalização">
+                <img th:src="@{/images/galeria5.jpg}" alt="Treino 2" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">TÉCNICO</div>
+            </div>
+            <div class="gallery-item reveal" data-category="treinos" data-caption="Academia — fortalecimento">
+                <img th:src="@{/images/galeria6.jpg}" alt="Treino 3" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">FORÇA</div>
+            </div>
+
+            <div class="gallery-item reveal" data-category="comemoracoes" data-caption="Comemoração do hat-trick">
+                <img th:src="@{/images/galeria7.jpg}" alt="Comemoração 1" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">GOL</div>
+            </div>
+            <div class="gallery-item reveal" data-category="comemoracoes" data-caption="Comemorando com a torcida">
+                <img th:src="@{/images/galeria8.jpg}" alt="Comemoração 2" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">CAMPEÃO</div>
+            </div>
+            <div class="gallery-item reveal" data-category="comemoracoes" data-caption="Erguendo a taça de campeão">
+                <img th:src="@{/images/galeria9.jpg}" alt="Comemoração 3" class="gallery-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="gallery-placeholder" style="display:none;">TAÇA</div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <h4>LUCAS SILVA</h4>
+            <p>Site oficial do atacante Lucas Silva.</p>
+        </div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

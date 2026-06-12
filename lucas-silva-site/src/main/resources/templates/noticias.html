@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias — Lucas Silva</title>
+    <meta name="description" content="Últimas notícias e atualizações sobre a carreira de Lucas Silva.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p class="section-tag">Atualizações</p>
+            <h2 class="section-title">NOTÍCIAS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 2rem;">
+            <a href="/noticias/nova" class="btn btn-outline">
+                <i class="fa-solid fa-plus"></i>&nbsp; Cadastrar nova
+            </a>
+        </div>
+
+        <div class="news-grid">
+            <article class="news-card reveal" th:each="n : ${noticias}">
+                <div class="news-image" th:style="${n.imagem != null and !n.imagem.isEmpty()} ? 'background-image: url(' + ${n.imagem} + '); background-size: cover; background-position: center;' : ''">
+    <span th:if="${n.imagem == null or n.imagem.isEmpty()}">LS</span>
+</div>
+                <div class="news-body">
+                    <span class="news-date"
+                          th:text="${#temporals.format(n.dataPublicacao, 'dd ''de'' MMMM ''de'' yyyy')}">01 de janeiro de 2025</span>
+                    <h3 class="news-title" th:text="${n.titulo}">Título</h3>
+                    <p class="news-summary" th:text="${n.resumo}">Resumo</p>
+                    <a th:href="@{'/noticias/' + ${n.id}}" class="news-link">Ler matéria completa</a>
+
+                    <!-- Botões administrativos: editar e excluir -->
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid rgba(212,175,55,0.15);">
+                        <a th:href="@{'/noticias/' + ${n.id} + '/editar'}"
+                           style="flex: 1; text-align: center; padding: 0.6rem; background: var(--gold); color: var(--black); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 3px; text-decoration: none;">
+                            <i class="fa-solid fa-pen"></i>&nbsp; Editar
+                        </a>
+                        <form th:action="@{'/noticias/' + ${n.id} + '/excluir'}" method="post"
+                              style="flex: 1; margin: 0;"
+                              onsubmit="return confirm('Tem certeza que deseja excluir esta notícia? Esta ação não pode ser desfeita.');">
+                            <button type="submit"
+                                    style="width: 100%; padding: 0.6rem; background: transparent; border: 1px solid #8B0000; color: #ff6b6b; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: inherit;">
+                                <i class="fa-solid fa-trash"></i>&nbsp; Excluir
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div th:if="${#lists.isEmpty(noticias)}"
+             style="text-align: center; color: var(--gray); padding: 3rem;">
+            Nenhuma notícia cadastrada ainda.
+        </div>
+
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

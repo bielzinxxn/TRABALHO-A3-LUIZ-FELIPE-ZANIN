@@ -1,0 +1,31 @@
+# Como colocar a foto do jogador na Home
+
+Para substituir o "10" dourado da página inicial por uma foto real:
+
+## Passo 1
+Tenha uma foto vertical do jogador (proporção 3:4 funciona melhor, tipo 600x800px).
+
+## Passo 2
+Salve a foto **NESTA PASTA** com o nome exato:
+
+```
+lucas.jpg
+```
+
+(Tem que ser .jpg e tem que se chamar exatamente `lucas.jpg`, tudo minúsculo)
+
+## Passo 3
+Reinicie o servidor Spring Boot (para e roda de novo no VS Code) e acesse `http://localhost:8080`.
+
+A foto aparece automaticamente no lugar do número 10.
+
+## Se quiser voltar pro número 10
+Apaga ou renomeia o arquivo `lucas.jpg`. O site detecta automaticamente que não tem foto e mostra o "10" dourado.
+
+## Outras fotos do site
+Você também pode adicionar fotos para:
+- `noticia1.jpg`, `noticia2.jpg`, `noticia3.jpg` — banners das notícias
+- Galerias da página `/galeria` (alterar manualmente o HTML)
+
+Formatos aceitos: `.jpg`, `.jpeg`, `.png`, `.webp`
+c:\Users\gabri\Downloads\lucas.jpg

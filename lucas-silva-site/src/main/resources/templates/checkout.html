@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Compra - Lucas Silva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main class="checkout-container">
+
+    <div class="checkout-header">
+        <p style="color: var(--gold); letter-spacing: 4px; font-size: 0.8rem; text-transform: uppercase;">Passo 1 de 2</p>
+        <h1>FORMA DE PAGAMENTO</h1>
+        <p>Escolha como deseja pagar pelo livro <strong style="color: var(--white);">"A Trajetória de um Campeão"</strong></p>
+    </div>
+
+    <!-- Resumo do que está sendo comprado -->
+    <div style="background: var(--black-soft); border: 1px solid rgba(212,175,55,0.2); border-radius: 6px; padding: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+            <div style="color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.3rem;">Seu pedido</div>
+            <div style="color: var(--white); font-weight: 600;">Livro Lucas Silva · A Trajetória de um Campeão</div>
+            <div style="color: var(--gray); font-size: 0.85rem; margin-top: 0.2rem;">Edição Limitada · Frete grátis</div>
+        </div>
+        <div style="text-align: right;">
+            <div style="color: var(--gray); text-decoration: line-through; font-size: 0.85rem;">R$ 79,90</div>
+            <div style="color: var(--gold); font-family: var(--font-display); font-size: 2rem; letter-spacing: 1px;">R$ 49,90</div>
+        </div>
+    </div>
+
+    <!-- Métodos de pagamento -->
+    <div class="metodos-grid">
+
+        <a href="/livro/pagamento/pix" class="metodo-card">
+            <div class="icon"><i class="fa-brands fa-pix"></i></div>
+            <h3>PIX</h3>
+            <p>Aprovação imediata.<br>Sem taxas.</p>
+            <div style="background: rgba(46,204,113,0.15); color: #2ecc71; font-size: 0.7rem; letter-spacing: 2px; padding: 0.3rem 0.6rem; border-radius: 3px; display: inline-block; margin-top: 1rem;">5% DE DESCONTO</div>
+        </a>
+
+        <a href="/livro/pagamento/credito" class="metodo-card">
+            <div class="icon"><i class="fa-regular fa-credit-card"></i></div>
+            <h3>CRÉDITO</h3>
+            <p>Em até 12x sem juros.<br>Aprovação em segundos.</p>
+            <div style="color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; padding: 0.3rem 0; margin-top: 1rem;">12x DE R$ 4,16</div>
+        </a>
+
+        <a href="/livro/pagamento/debito" class="metodo-card">
+            <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h3>DÉBITO</h3>
+            <p>Pagamento à vista.<br>Confirmação imediata.</p>
+            <div style="color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; padding: 0.3rem 0; margin-top: 1rem;">À VISTA R$ 49,90</div>
+        </a>
+
+    </div>
+
+    <p style="text-align: center; color: var(--gray); font-size: 0.8rem; margin-top: 2.5rem;">
+        <i class="fa-solid fa-lock" style="color: var(--gold);"></i>
+        Ambiente seguro · Seus dados estão protegidos
+    </p>
+
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="/livro" class="news-link">← Voltar ao produto</a>
+    </p>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div><h4>NAVEGAÇÃO</h4><p><a href="/sobre">Sobre</a></p><p><a href="/contato">Contato</a></p></div>
+        <div><h4>REDES SOCIAIS</h4><p><a href="https://instagram.com">Instagram</a></p></div>
+    </div>
+    <div class="footer-bottom">© 2025 <span>LUCAS SILVA OFFICIAL</span></div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

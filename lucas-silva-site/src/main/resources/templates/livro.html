@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Livro Oficial - Lucas Silva | A Trajetória de um Campeão</title>
+    <meta name="description" content="Livro oficial autobiográfico de Lucas Silva: A Trajetória de um Campeão. Edição limitada com desconto especial.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar active"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main class="produto-container">
+
+    <div class="produto-grid">
+
+        <!-- ============== CAPA DO LIVRO (placeholder estilizado) ============== -->
+        <div class="livro-capa">
+       <img th:src="@{/images/livro.jpg}"
+            alt="Capa do livro"
+            class="livro-capa-img"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+       <div class="livro-capa-fallback" style="display: flex; flex-direction: column; justify-content: space-between; width: 100%; height: 100%; text-align: center;">
+           <div class="livro-capa-tag">Livro Oficial · Autobiografia</div>
+           <div>
+               <div class="livro-capa-titulo">A TRAJETÓRIA<br>DE UM<br>CAMPEÃO</div>
+               <div class="livro-capa-sub">"Cada gol carrega uma história"</div>
+           </div>
+           <div>
+               <div class="livro-capa-autor">LUCAS SILVA</div>
+               <div class="livro-capa-edicao">Edição Limitada · 2025</div>
+           </div>
+       </div>
+   </div>
+
+        <!-- ============== INFORMAÇÕES DO PRODUTO ============== -->
+        <div class="livro-info">
+
+            <span class="badge-edicao">🔥 Edição Limitada · Apenas 5.000 unidades</span>
+
+            <h1>LUCAS SILVA<br><span>A Trajetória de um Campeão</span></h1>
+
+            <p class="autor">por <strong>Lucas Silva</strong> · Autobiografia oficial</p>
+
+            <!-- Avaliações -->
+            <div class="avaliacoes-resumo">
+                <div class="estrelas">★ ★ ★ ★ ★</div>
+                <span class="num">4.9</span>
+                <span class="qtd">(2.847 avaliações · Mais de 10.000 cópias vendidas)</span>
+            </div>
+
+            <!-- Sinopse -->
+            <p class="sinopse">
+                Do campo de várzea no litoral paulista aos estádios lotados da América do Sul, Lucas Silva
+                revela em primeira pessoa a história por trás dos gols, dos títulos e das lições aprendidas
+                no caminho. Uma jornada de superação, disciplina e fé que inspirou uma geração de jovens
+                atletas. Com prefácio de grandes nomes do futebol mundial e fotos inéditas dos bastidores
+                da carreira do camisa 10.
+            </p>
+
+            <!-- Caixa de preço -->
+            <div class="preco-box">
+                <div class="preco-de">De: <s>R$ 79,90</s></div>
+                <div class="preco-por">
+                    <span class="moeda">R$</span>
+                    <span class="valor">49,90</span>
+                    <span class="desconto">-38% OFF</span>
+                </div>
+                <div class="parcelamento">
+                    ou <strong>12x de R$ 4,16</strong> sem juros no cartão
+                </div>
+            </div>
+
+            <!-- Selos de confiança -->
+            <div class="selos-confianca">
+                <div class="selo-item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span><strong>Frete GRÁTIS</strong> para todo o Brasil</span>
+                </div>
+                <div class="selo-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Compra <strong>100% segura</strong></span>
+                </div>
+                <div class="selo-item">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span><strong>7 dias</strong> para troca</span>
+                </div>
+                <div class="selo-item">
+                    <i class="fa-solid fa-signature"></i>
+                    <span>Capa <strong>autografada</strong> *primeiros 500</span>
+                </div>
+            </div>
+
+            <!-- Botão de compra -->
+            <a href="/livro/checkout" class="btn-comprar-grande">
+                <i class="fa-solid fa-bag-shopping"></i> Comprar Agora
+            </a>
+
+            <p style="text-align: center; color: var(--gray); font-size: 0.8rem; margin-top: 1rem;">
+                <i class="fa-solid fa-lock" style="color: var(--gold);"></i>
+                Pagamento seguro · PIX · Crédito · Débito
+            </p>
+
+        </div>
+    </div>
+
+    <!-- ============== AVALIAÇÕES DE LEITORES ============== -->
+    <section class="avaliacoes-section">
+        <h2>O QUE OS LEITORES DIZEM</h2>
+
+        <div class="avaliacao-card">
+            <div class="estrelas">★ ★ ★ ★ ★</div>
+            <div class="nome" style="margin-top:0.4rem">Carlos M.</div>
+            <div class="data">15 de março de 2025</div>
+            <p class="texto">"Li em três dias. A história do Lucas é inspiradora demais — todo pai deveria dar pro filho que sonha em ser jogador. Recomendo MUITO!"</p>
+        </div>
+
+        <div class="avaliacao-card">
+            <div class="estrelas">★ ★ ★ ★ ★</div>
+            <div class="nome" style="margin-top:0.4rem">Ana Beatriz S.</div>
+            <div class="data">08 de fevereiro de 2025</div>
+            <p class="texto">"Não sou fã de futebol, mas o livro me prendeu. As fotos dos bastidores são incríveis e o capítulo sobre a primeira convocação me arrepiou. Vale cada centavo."</p>
+        </div>
+
+        <div class="avaliacao-card">
+            <div class="estrelas">★ ★ ★ ★ ★</div>
+            <div class="nome" style="margin-top:0.4rem">Roberto P.</div>
+            <div class="data">22 de janeiro de 2025</div>
+            <p class="texto">"Chegou rapidíssimo, embalagem caprichada e ainda peguei a capa autografada! Conteúdo nota 10. Já comprei dois pra dar de presente."</p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.</div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

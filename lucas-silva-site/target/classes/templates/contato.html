@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contato — Lucas Silva</title>
+    <meta name="description" content="Entre em contato com a equipe oficial de Lucas Silva.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p class="section-tag">Fale conosco</p>
+            <h2 class="section-title">CONTATO</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-grid">
+
+            <!-- Informações da assessoria -->
+            <div class="contact-info reveal">
+                <h3>Assessoria Oficial</h3>
+                <p>
+                    Para imprensa, parcerias comerciais, eventos ou agendamento de entrevistas,
+                    entre em contato pelos canais abaixo ou preencha o formulário ao lado.
+                </p>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="text">
+                        <strong>E-mail</strong>
+                        <span>contato@lucassilvaoficial.com</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                    <div class="text">
+                        <strong>Telefone</strong>
+                        <span>+55 (11) 9 9999-9999</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="text">
+                        <strong>Localização</strong>
+                        <span>São Paulo — SP, Brasil</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="text">
+                        <strong>Atendimento</strong>
+                        <span>Segunda a sexta, 9h–18h</span>
+                    </div>
+                </div>
+
+                <div class="social-links" style="margin-top: 2rem;">
+                    <a href="https://instagram.com" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-link" aria-label="X">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Formulário -->
+            <form id="form-contato" class="contact-form reveal"
+                  th:action="@{/contato}" th:object="${mensagem}" method="post" novalidate>
+
+                <!-- Mensagem de sucesso após envio -->
+                <div class="form-success" th:if="${sucesso}" th:text="${sucesso}"></div>
+
+                <div class="form-group">
+                    <label for="nome">Nome completo *</label>
+                    <input type="text" id="nome" name="nome" th:field="*{nome}"
+                           minlength="3" maxlength="100" required>
+                    <small class="form-error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" th:field="*{email}"
+                           maxlength="120" required>
+                    <small class="form-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem *</label>
+                    <textarea id="mensagem" name="mensagem" th:field="*{mensagem}"
+                              minlength="10" maxlength="1000" required></textarea>
+                    <small class="form-error" th:if="${#fields.hasErrors('mensagem')}" th:errors="*{mensagem}"></small>
+                </div>
+
+                <button type="submit" class="btn">
+                    Enviar Mensagem &nbsp;<i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${noticia.titulo} + ' — Lucas Silva'">Notícia</title>
+    <meta name="description" th:attr="content=${noticia.resumo}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <article class="section reveal" style="max-width: 800px;">
+
+        <a href="/noticias" class="news-link" style="display: inline-block; margin-bottom: 2rem;">← Voltar</a>
+
+        <!-- Botão de editar visível ao admin no topo do detalhe -->
+        <div style="float: right;">
+            <a th:href="@{'/noticias/' + ${noticia.id} + '/editar'}" class="btn btn-outline" style="padding: 0.6rem 1.5rem; font-size: 0.75rem;">
+                <i class="fa-solid fa-pen"></i>&nbsp; Editar esta notícia
+            </a>
+        </div>
+
+        <p class="news-date"
+           th:text="${#temporals.format(noticia.dataPublicacao, 'dd ''de'' MMMM ''de'' yyyy')}">data</p>
+
+        <h1 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin: 1rem 0 2rem; letter-spacing: 1px;"
+            th:text="${noticia.titulo}">Título da notícia</h1>
+
+        <div class="news-image" th:style="${noticia.imagem != null and !noticia.imagem.isEmpty()} ? 'aspect-ratio: 16/8; margin-bottom: 2rem; border: 1px solid rgba(212,175,55,0.2); background-image: url(' + ${noticia.imagem} + '); background-size: cover; background-position: center;' : 'aspect-ratio: 16/8; margin-bottom: 2rem; border: 1px solid rgba(212,175,55,0.2);'">
+    <span th:if="${noticia.imagem == null or noticia.imagem.isEmpty()}">LS</span>
+</div>
+
+        <p style="font-size: 1.2rem; color: var(--gold); font-style: italic; margin-bottom: 2rem; line-height: 1.6;"
+           th:text="${noticia.resumo}">Resumo</p>
+
+        <div style="color: var(--gray); font-size: 1.05rem; line-height: 1.9; white-space: pre-line;"
+             th:text="${noticia.conteudo}">Conteúdo da notícia</div>
+
+    </article>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

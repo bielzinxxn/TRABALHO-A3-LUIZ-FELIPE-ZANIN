@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Compra Confirmada! - Lucas Silva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main class="confirmacao-container">
+
+    <div class="confirmacao-icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <h1>COMPRA APROVADA!</h1>
+    <p class="subtitulo">Obrigado por adquirir seu exemplar 🏆</p>
+
+    <div class="pedido-box">
+        <div class="label-cinza">Número do pedido</div>
+        <div class="numero-pedido" id="numeroPedido">#LS-000000</div>
+
+        <div class="info-row">
+            <span>Produto</span>
+            <span style="text-align: right;">Livro Lucas Silva</span>
+        </div>
+        <div class="info-row">
+            <span>Forma de pagamento</span>
+            <span id="metodoPagamento">—</span>
+        </div>
+        <div class="info-row" id="rowParcelas" style="display: none;">
+            <span>Parcelamento</span>
+            <span id="parcelasInfo">—</span>
+        </div>
+        <div class="info-row">
+            <span>Total pago</span>
+            <span style="color: var(--gold); font-weight: 700;" id="totalPago">R$ 49,90</span>
+        </div>
+        <div class="info-row">
+            <span>Previsão de entrega</span>
+            <span id="previsao">—</span>
+        </div>
+    </div>
+
+    <p style="color: var(--gray); margin-bottom: 2rem;">
+        Um e-mail de confirmação foi enviado para o endereço cadastrado.<br>
+        Você pode acompanhar o status do pedido no seu perfil.
+    </p>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn">
+            <i class="fa-solid fa-house"></i>&nbsp; Voltar à página inicial
+        </a>
+        <a href="/livro" class="btn btn-outline">
+            <i class="fa-solid fa-book"></i>&nbsp; Ver o produto
+        </a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div><h4>NAVEGAÇÃO</h4><p><a href="/sobre">Sobre</a></p><p><a href="/contato">Contato</a></p></div>
+        <div><h4>REDES SOCIAIS</h4><p><a href="https://instagram.com">Instagram</a></p></div>
+    </div>
+    <div class="footer-bottom">© 2025 <span>LUCAS SILVA OFFICIAL</span></div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+
+<!--
+    ============================================================
+    SIMULAÇÃO ACADÊMICA - CONFIRMAÇÃO DO PEDIDO
+    O número do pedido é gerado aleatoriamente via JavaScript.
+    Em um sistema real, viria do banco de dados após persistir
+    a transação. Aqui é apenas para demonstração visual.
+    ============================================================
+-->
+<script>
+    // === Gera número de pedido aleatório (8 dígitos) ===
+    const numeroAleatorio = Math.floor(10000000 + Math.random() * 90000000);
+    document.getElementById('numeroPedido').textContent = '#LS-' + numeroAleatorio;
+
+    // === Lê parâmetros da URL (método de pagamento e parcelas) ===
+    const params = new URLSearchParams(window.location.search);
+    const metodo = params.get('metodo') || 'PIX';
+    const parcelas = parseInt(params.get('parcelas') || '1');
+
+    document.getElementById('metodoPagamento').textContent = metodo;
+
+    // Total pago (PIX tem desconto)
+    if (metodo === 'PIX') {
+        document.getElementById('totalPago').textContent = 'R$ 47,40';
+    } else {
+        document.getElementById('totalPago').textContent = 'R$ 49,90';
+    }
+
+    // Mostra parcelamento apenas para crédito com mais de 1 parcela
+    if (metodo === 'Crédito' && parcelas > 1) {
+        const valorParcela = (49.90 / parcelas).toFixed(2).replace('.', ',');
+        document.getElementById('parcelasInfo').textContent = parcelas + 'x de R$ ' + valorParcela + ' sem juros';
+        document.getElementById('rowParcelas').style.display = 'flex';
+    }
+
+    // === Gera previsão de entrega (entre 5 e 7 dias úteis) ===
+    const hoje = new Date();
+    const diasAdicionais = 5 + Math.floor(Math.random() * 3);
+    hoje.setDate(hoje.getDate() + diasAdicionais);
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const meses = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+    document.getElementById('previsao').textContent = dia + ' de ' + meses[hoje.getMonth()] + ' de ' + hoje.getFullYear();
+</script>
+
+</body>
+</html>

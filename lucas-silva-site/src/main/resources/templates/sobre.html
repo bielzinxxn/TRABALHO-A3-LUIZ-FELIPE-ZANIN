@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre — Lucas Silva</title>
+    <meta name="description" content="Biografia, carreira e conquistas do atacante Lucas Silva.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p class="section-tag">A história</p>
+            <h2 class="section-title">SOBRE LUCAS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="bio-grid">
+
+            <!-- Foto do atleta (placeholder com inicial) -->
+            <div class="bio-image reveal">LS</div>
+
+            <div class="bio-content reveal">
+
+                <h3>Biografia</h3>
+                <p>
+                    Lucas Silva, nascido em 14 de março de 2000, na cidade de Santos (SP),
+                    é um dos atacantes mais talentosos da nova geração do futebol brasileiro.
+                    Com 1,82m e uma combinação rara de potência, técnica refinada e leitura de jogo,
+                    consolidou-se como referência no ataque do clube alviverde.
+                </p>
+                <p>
+                    Filho de pai eletricista e mãe professora, cresceu jogando nas várzeas
+                    do litoral paulista até ser descoberto, aos 11 anos, em uma peneira do Santos FC.
+                    Subiu por todas as categorias de base e estreou no time profissional aos 18 anos,
+                    marcando o gol da vitória em sua primeira partida.
+                </p>
+
+                <h3>Trajetória na Carreira</h3>
+                <p>
+                    <strong style="color: var(--gold);">2018 — Estreia profissional:</strong>
+                    primeiro contrato com o Santos FC; vice-artilheiro do Campeonato Brasileiro Sub-20.
+                </p>
+                <p>
+                    <strong style="color: var(--gold);">2021 — Convocação à Seleção:</strong>
+                    primeira chamada para a Seleção Brasileira principal nas Eliminatórias.
+                </p>
+                <p>
+                    <strong style="color: var(--gold);">2022 — Transferência:</strong>
+                    chega à Sociedade Esportiva Palmeiras em transferência recorde,
+                    assumindo a camisa 10 e a liderança ofensiva da equipe.
+                </p>
+                <p>
+                    <strong style="color: var(--gold);">2024 — Auge:</strong>
+                    melhor temporada da carreira, com 27 gols e indicação ao prêmio
+                    Bola de Ouro Sul-Americana.
+                </p>
+
+                <h3>Conquistas e Títulos</h3>
+                <ul class="achievements">
+                    <li>
+                        Campeão Brasileiro
+                        <small>2023, 2024 — SE Palmeiras</small>
+                    </li>
+                    <li>
+                        Campeonato Paulista
+                        <small>2022, 2023, 2024 — SE Palmeiras</small>
+                    </li>
+                    <li>
+                        Copa Libertadores da América
+                        <small>2024 — SE Palmeiras</small>
+                    </li>
+                    <li>
+                        Artilheiro do Campeonato Brasileiro
+                        <small>2024 — 27 gols</small>
+                    </li>
+                    <li>
+                        Bola de Prata
+                        <small>2023, 2024 — Melhor atacante da temporada</small>
+                    </li>
+                    <li>
+                        Seleção Brasileira
+                        <small>23 jogos · 9 gols · 4 assistências</small>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <h4>LUCAS SILVA</h4>
+            <p>Site oficial do atacante Lucas Silva.</p>
+        </div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Notícia — Lucas Silva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section" style="max-width: 760px;">
+
+        <div class="section-header">
+            <p class="section-tag">Administração</p>
+            <h2 class="section-title" th:text="${modoEdicao} ? 'EDITAR NOTÍCIA' : 'NOVA NOTÍCIA'">NOVA NOTÍCIA</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <form th:action="${modoEdicao} ? @{'/noticias/' + ${noticia.id} + '/editar'} : @{/noticias}"
+              th:object="${noticia}" method="post" class="contact-form">
+
+            <div class="form-group">
+                <label for="titulo">Título *</label>
+                <input type="text" id="titulo" th:field="*{titulo}" required maxlength="150">
+                <small class="form-error" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="resumo">Resumo</label>
+                <input type="text" id="resumo" th:field="*{resumo}" maxlength="300">
+            </div>
+
+            <div class="form-group">
+                <label for="imagem">URL da imagem destacada</label>
+                <input type="text" id="imagem" th:field="*{imagem}" placeholder="/images/foto.jpg">
+            </div>
+
+            <div class="form-group">
+                <label for="conteudo">Conteúdo *</label>
+                <textarea id="conteudo" th:field="*{conteudo}" rows="10" required></textarea>
+                <small class="form-error" th:if="${#fields.hasErrors('conteudo')}" th:errors="*{conteudo}"></small>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button type="submit" class="btn" th:text="${modoEdicao} ? 'Salvar Alterações' : 'Publicar'">Publicar</button>
+                <a href="/noticias" class="btn btn-outline">Cancelar</a>
+            </div>
+        </form>
+
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2025 <span>LUCAS SILVA OFFICIAL</span></div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

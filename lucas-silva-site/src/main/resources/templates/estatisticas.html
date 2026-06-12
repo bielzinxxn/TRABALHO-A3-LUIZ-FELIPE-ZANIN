@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Estatísticas — Lucas Silva</title>
+    <meta name="description" content="Estatísticas completas de carreira de Lucas Silva: jogos, gols, assistências e cartões por temporada.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Chart.js para gráficos interativos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main style="padding-top: var(--header-h);">
+
+    <section class="section">
+        <div class="section-header reveal">
+            <p class="section-tag">Números da carreira</p>
+            <h2 class="section-title">ESTATÍSTICAS</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- Cards com os totais -->
+        <div class="stats-cards">
+            <div class="stat-card reveal">
+                <div class="icon"><i class="fa-solid fa-futbol"></i></div>
+                <span class="number" th:text="${totalJogos}">0</span>
+                <span class="label">Jogos disputados</span>
+            </div>
+            <div class="stat-card reveal">
+                <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+                <span class="number" th:text="${totalGols}">0</span>
+                <span class="label">Gols marcados</span>
+            </div>
+            <div class="stat-card reveal">
+                <div class="icon"><i class="fa-solid fa-hands-clapping"></i></div>
+                <span class="number" th:text="${totalAssistencias}">0</span>
+                <span class="label">Assistências</span>
+            </div>
+            <div class="stat-card reveal">
+                <div class="icon" style="color:#FFD700"><i class="fa-solid fa-square"></i></div>
+                <span class="number" th:text="${totalAmarelos}">0</span>
+                <span class="label">Cartões amarelos</span>
+            </div>
+            <div class="stat-card reveal">
+                <div class="icon" style="color:#8B0000"><i class="fa-solid fa-square"></i></div>
+                <span class="number" th:text="${totalVermelhos}">0</span>
+                <span class="label">Cartões vermelhos</span>
+            </div>
+        </div>
+
+        <!--
+            Dados serializados pelo Thymeleaf para serem lidos pelo Chart.js.
+            Usamos th:inline="javascript" para o Thymeleaf gerar arrays JS válidos.
+        -->
+        <script th:inline="javascript">
+            // Os arrays abaixo são preenchidos no servidor pelo Thymeleaf.
+            window.__statsData = {
+                temporadas:  /*[[${estatisticas.![temporada]}]]*/         [],
+                gols:        /*[[${estatisticas.![gols]}]]*/              [],
+                assistencias:/*[[${estatisticas.![assistencias]}]]*/      [],
+                jogos:       /*[[${estatisticas.![jogos]}]]*/             [],
+                amarelos:    /*[[${estatisticas.![cartoesAmarelos]}]]*/   [],
+                vermelhos:   /*[[${estatisticas.![cartoesVermelhos]}]]*/  []
+            };
+        </script>
+        <div id="dados-graficos" style="display:none;"></div>
+
+        <!-- Gráficos -->
+        <div class="charts-grid">
+            <div class="chart-container reveal">
+                <h3>GOLS x ASSISTÊNCIAS POR TEMPORADA</h3>
+                <canvas id="chartGols"></canvas>
+            </div>
+            <div class="chart-container reveal">
+                <h3>EVOLUÇÃO DE JOGOS</h3>
+                <canvas id="chartJogos"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container reveal" style="max-width: 480px; margin: 2rem auto 0;">
+            <h3 style="text-align:center;">DISTRIBUIÇÃO DE CARTÕES</h3>
+            <canvas id="chartCartoes"></canvas>
+        </div>
+
+        <!-- Tabela detalhada -->
+        <div class="chart-container reveal" style="margin-top: 3rem; overflow-x: auto;">
+            <h3>HISTÓRICO COMPLETO POR TEMPORADA</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem; color: var(--white);">
+                <thead>
+                <tr style="border-bottom: 2px solid var(--gold);">
+                    <th style="text-align: left; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">TEMPORADA</th>
+                    <th style="text-align: left; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">CLUBE</th>
+                    <th style="text-align: center; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">J</th>
+                    <th style="text-align: center; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">G</th>
+                    <th style="text-align: center; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">A</th>
+                    <th style="text-align: center; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">CA</th>
+                    <th style="text-align: center; padding: 1rem; color: var(--gold); letter-spacing: 2px; font-size: 0.8rem;">CV</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="e : ${estatisticas}" style="border-bottom: 1px solid rgba(212,175,55,0.1);">
+                    <td style="padding: 1rem;" th:text="${e.temporada}">2024/2025</td>
+                    <td style="padding: 1rem; color: var(--gray);" th:text="${e.clube}">Clube</td>
+                    <td style="padding: 1rem; text-align: center;" th:text="${e.jogos}">0</td>
+                    <td style="padding: 1rem; text-align: center; color: var(--gold); font-weight: 700;" th:text="${e.gols}">0</td>
+                    <td style="padding: 1rem; text-align: center;" th:text="${e.assistencias}">0</td>
+                    <td style="padding: 1rem; text-align: center;" th:text="${e.cartoesAmarelos}">0</td>
+                    <td style="padding: 1rem; text-align: center;" th:text="${e.cartoesVermelhos}">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <h4>LUCAS SILVA</h4>
+            <p>Site oficial do atacante Lucas Silva.</p>
+        </div>
+        <div>
+            <h4>NAVEGAÇÃO</h4>
+            <p><a href="/sobre">Sobre</a></p>
+            <p><a href="/estatisticas">Estatísticas</a></p>
+            <p><a href="/galeria">Galeria</a></p>
+            <p><a href="/contato">Contato</a></p>
+        </div>
+        <div>
+            <h4>REDES SOCIAIS</h4>
+            <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            <p><a href="https://twitter.com" target="_blank">X (Twitter)</a></p>
+            <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 <span>LUCAS SILVA OFFICIAL</span> · Todos os direitos reservados.
+    </div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

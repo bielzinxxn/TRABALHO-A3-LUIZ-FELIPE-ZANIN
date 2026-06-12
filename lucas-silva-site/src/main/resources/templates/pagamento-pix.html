@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento via PIX - Lucas Silva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="/" class="logo">LUCAS <span>SILVA</span></a>
+        <ul class="nav-menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/estatisticas">Estatísticas</a></li>
+            <li><a href="/galeria">Galeria</a></li>
+            <li><a href="/noticias">Notícias</a></li>
+            <li><a href="/contato">Contato</a></li>
+            <li><a href="/livro" class="nav-comprar"><i class="fa-solid fa-bag-shopping"></i> Comprar</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
+
+<main class="checkout-container">
+
+    <div class="checkout-header">
+        <p style="color: var(--gold); letter-spacing: 4px; font-size: 0.8rem; text-transform: uppercase;">Passo 2 de 2</p>
+        <h1>PAGAMENTO VIA PIX</h1>
+    </div>
+
+    <div class="pagamento-grid">
+
+        <!-- ===== ÁREA DO PIX (esquerda) ===== -->
+        <div>
+            <!-- Tela enquanto não confirma -->
+            <div class="pix-box" id="pixAguardando">
+                <p style="color: var(--gray); margin-bottom: 0.5rem;">Escaneie o QR Code abaixo com o app do seu banco</p>
+
+                <!-- QR Code SVG fake (não é um QR real, só um padrão visual) -->
+                <div class="pix-qr">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Padrão de QR Code FAKE (apenas visual - simulação acadêmica) -->
+                        <rect width="100" height="100" fill="white"/>
+                        <!-- Cantos de posicionamento (3 quadrados grandes) -->
+                        <rect x="5" y="5" width="20" height="20" fill="black"/>
+                        <rect x="9" y="9" width="12" height="12" fill="white"/>
+                        <rect x="12" y="12" width="6" height="6" fill="black"/>
+                        <rect x="75" y="5" width="20" height="20" fill="black"/>
+                        <rect x="79" y="9" width="12" height="12" fill="white"/>
+                        <rect x="82" y="12" width="6" height="6" fill="black"/>
+                        <rect x="5" y="75" width="20" height="20" fill="black"/>
+                        <rect x="9" y="79" width="12" height="12" fill="white"/>
+                        <rect x="12" y="82" width="6" height="6" fill="black"/>
+                        <!-- Padrão central pseudoaleatório -->
+                        <g fill="black">
+                            <rect x="30" y="5" width="4" height="4"/><rect x="38" y="5" width="4" height="4"/><rect x="46" y="5" width="4" height="4"/><rect x="58" y="5" width="4" height="4"/><rect x="66" y="5" width="4" height="4"/>
+                            <rect x="34" y="13" width="4" height="4"/><rect x="42" y="13" width="4" height="4"/><rect x="54" y="13" width="4" height="4"/><rect x="62" y="13" width="4" height="4"/>
+                            <rect x="30" y="21" width="4" height="4"/><rect x="38" y="21" width="4" height="4"/><rect x="50" y="21" width="4" height="4"/><rect x="62" y="21" width="4" height="4"/><rect x="70" y="21" width="4" height="4"/>
+                            <rect x="5" y="30" width="4" height="4"/><rect x="13" y="30" width="4" height="4"/><rect x="21" y="30" width="4" height="4"/><rect x="29" y="30" width="4" height="4"/><rect x="37" y="30" width="4" height="4"/><rect x="45" y="30" width="4" height="4"/><rect x="53" y="30" width="4" height="4"/><rect x="61" y="30" width="4" height="4"/><rect x="69" y="30" width="4" height="4"/><rect x="77" y="30" width="4" height="4"/><rect x="85" y="30" width="4" height="4"/><rect x="93" y="30" width="4" height="4"/>
+                            <rect x="9" y="38" width="4" height="4"/><rect x="25" y="38" width="4" height="4"/><rect x="41" y="38" width="4" height="4"/><rect x="49" y="38" width="4" height="4"/><rect x="57" y="38" width="4" height="4"/><rect x="73" y="38" width="4" height="4"/><rect x="89" y="38" width="4" height="4"/>
+                            <rect x="13" y="46" width="4" height="4"/><rect x="21" y="46" width="4" height="4"/><rect x="29" y="46" width="4" height="4"/><rect x="37" y="46" width="4" height="4"/><rect x="53" y="46" width="4" height="4"/><rect x="69" y="46" width="4" height="4"/><rect x="85" y="46" width="4" height="4"/>
+                            <rect x="5" y="54" width="4" height="4"/><rect x="17" y="54" width="4" height="4"/><rect x="33" y="54" width="4" height="4"/><rect x="45" y="54" width="4" height="4"/><rect x="57" y="54" width="4" height="4"/><rect x="65" y="54" width="4" height="4"/><rect x="77" y="54" width="4" height="4"/><rect x="93" y="54" width="4" height="4"/>
+                            <rect x="9" y="62" width="4" height="4"/><rect x="25" y="62" width="4" height="4"/><rect x="41" y="62" width="4" height="4"/><rect x="49" y="62" width="4" height="4"/><rect x="61" y="62" width="4" height="4"/><rect x="73" y="62" width="4" height="4"/><rect x="89" y="62" width="4" height="4"/>
+                            <rect x="13" y="70" width="4" height="4"/><rect x="29" y="70" width="4" height="4"/><rect x="37" y="70" width="4" height="4"/><rect x="45" y="70" width="4" height="4"/><rect x="53" y="70" width="4" height="4"/><rect x="69" y="70" width="4" height="4"/><rect x="85" y="70" width="4" height="4"/><rect x="93" y="70" width="4" height="4"/>
+                            <rect x="30" y="78" width="4" height="4"/><rect x="38" y="78" width="4" height="4"/><rect x="50" y="78" width="4" height="4"/><rect x="62" y="78" width="4" height="4"/><rect x="70" y="78" width="4" height="4"/>
+                            <rect x="34" y="86" width="4" height="4"/><rect x="42" y="86" width="4" height="4"/><rect x="54" y="86" width="4" height="4"/><rect x="66" y="86" width="4" height="4"/>
+                            <rect x="30" y="94" width="4" height="4"/><rect x="38" y="94" width="4" height="4"/><rect x="46" y="94" width="4" height="4"/><rect x="58" y="94" width="4" height="4"/><rect x="70" y="94" width="4" height="4"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <p style="color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin: 1rem 0 0.5rem;">Ou copie o código PIX abaixo:</p>
+                <div class="pix-codigo" id="pixCodigo">00020126850014BR.GOV.BCB.PIX0136a629534e-7693-4846-b028-f142082d7b070223Livro Lucas Silva520400005303986540549.905802BR5925LUCAS SILVA EDITORA LTDA6009SAO PAULO62070503***6304E5F2</div>
+
+                <button onclick="copiarPix()" class="btn btn-outline" style="margin: 0.5rem 0 1.5rem; padding: 0.7rem 1.5rem; font-size: 0.75rem;">
+                    <i class="fa-solid fa-copy"></i>&nbsp; Copiar código
+                </button>
+
+                <div>
+                    <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 0.3rem;">O código expira em:</p>
+                    <div class="pix-timer" id="timer">10:00</div>
+                </div>
+
+                <p style="color: var(--gray); font-size: 0.8rem; margin-top: 1.5rem;">
+                    <i class="fa-solid fa-circle-notch fa-spin" style="color: var(--gold);"></i>
+                    Aguardando confirmação do pagamento...
+                </p>
+            </div>
+
+            <!-- Tela depois de confirmar -->
+            <div class="pix-confirmado" id="pixConfirmado">
+                <i class="fa-solid fa-circle-check"></i>
+                <h2>PAGAMENTO CONFIRMADO!</h2>
+                <p>Seu pagamento foi processado com sucesso.<br>Redirecionando para a confirmação do pedido...</p>
+                <div style="margin-top: 1.5rem;">
+                    <i class="fa-solid fa-spinner fa-spin" style="color: var(--gold); font-size: 1.5rem;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RESUMO DO PEDIDO (direita) ===== -->
+        <aside class="resumo-pedido">
+            <h3>RESUMO DO PEDIDO</h3>
+
+            <div class="resumo-item">
+                <span>Livro Lucas Silva</span>
+                <span>R$ 49,90</span>
+            </div>
+            <div class="resumo-item">
+                <span>Desconto PIX (5%)</span>
+                <span style="color: #2ecc71;">- R$ 2,50</span>
+            </div>
+            <div class="resumo-item">
+                <span>Frete</span>
+                <span style="color: #2ecc71;">GRÁTIS</span>
+            </div>
+
+            <div class="resumo-total">
+                <span>TOTAL</span>
+                <span>R$ 47,40</span>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(212,175,55,0.1); color: var(--gray); font-size: 0.8rem;">
+                <p style="margin-bottom: 0.5rem;"><i class="fa-solid fa-shield-halved" style="color: var(--gold);"></i> Compra protegida</p>
+                <p><i class="fa-solid fa-truck-fast" style="color: var(--gold);"></i> Entrega em até 7 dias úteis</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="/livro/checkout" class="news-link">← Trocar forma de pagamento</a>
+    </p>
+
+</main>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div><h4>LUCAS SILVA</h4><p>Site oficial do atacante Lucas Silva.</p></div>
+        <div><h4>NAVEGAÇÃO</h4><p><a href="/sobre">Sobre</a></p><p><a href="/contato">Contato</a></p></div>
+        <div><h4>REDES SOCIAIS</h4><p><a href="https://instagram.com">Instagram</a></p></div>
+    </div>
+    <div class="footer-bottom">© 2025 <span>LUCAS SILVA OFFICIAL</span></div>
+</footer>
+
+<script th:src="@{/js/script.js}"></script>
+
+<!--
+    ============================================================
+    SIMULAÇÃO ACADÊMICA - PAGAMENTO VIA PIX
+    Nada aqui é real. O código PIX foi gerado aleatoriamente,
+    o QR Code é apenas um padrão visual e a confirmação ocorre
+    automaticamente após 8 segundos via setTimeout abaixo.
+    Em um sistema real, haveria integração com APIs de banco.
+    ============================================================
+-->
+<script>
+    // === SIMULAÇÃO: contagem regressiva de expiração do PIX (10 minutos) ===
+    let segundosRestantes = 10 * 60;
+    const timerEl = document.getElementById('timer');
+    const interval = setInterval(() => {
+        segundosRestantes--;
+        const min = String(Math.floor(segundosRestantes / 60)).padStart(2, '0');
+        const seg = String(segundosRestantes % 60).padStart(2, '0');
+        timerEl.textContent = min + ':' + seg;
+        if (segundosRestantes <= 0) clearInterval(interval);
+    }, 1000);
+
+    // === SIMULAÇÃO: após 8 segundos, "confirma" o pagamento automaticamente ===
+    setTimeout(() => {
+        document.getElementById('pixAguardando').style.display = 'none';
+        document.getElementById('pixConfirmado').classList.add('show');
+        clearInterval(interval);
+
+        // Redireciona pra tela de confirmação após mais 3 segundos
+        setTimeout(() => {
+            window.location.href = '/livro/confirmacao?metodo=PIX';
+        }, 3000);
+    }, 8000);
+
+    // === Botão de copiar código PIX ===
+    function copiarPix() {
+        const codigo = document.getElementById('pixCodigo').textContent;
+        navigator.clipboard.writeText(codigo).then(() => {
+            alert('Código PIX copiado! (simulação)');
+        }).catch(() => {
+            // Fallback: seleciona o texto
+            const range = document.createRange();
+            range.selectNode(document.getElementById('pixCodigo'));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            alert('Código selecionado! Aperte Ctrl+C para copiar.');
+        });
+    }
+</script>
+
+</body>
+</html>
